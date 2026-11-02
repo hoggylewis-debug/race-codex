@@ -1,0 +1,117 @@
+name: Daily session (Codex)
+
+# Runs Codex once a day during the race. Can also be started by hand (Actions tab,
+# "Run workflow") for the dry run, or by n8n after the referee answers a request.
+on:
+  schedule:
+    - cron: "0 7 * * *"   # 07:00 UTC every day
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: "Why this run was started by hand (optional)"
+        required: false
+        default: "manual run"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: race-session
+  cancel-in-progress: false
+
+env:
+  AGENT: "Codex"
+  RACE_START: "2026-11-09"
+  RACE_END: "2026-12-20"
+  SESSION_MINUTES: "55"
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    outputs:
+      go: ${{ steps.check.outputs.go }}
+    steps:
+      - id: check
+        run: |
+          TODAY=$(date -u +%F)
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "go=true" >> "$GITHUB_OUTPUT"
+          elif [[ ! "$TODAY" < "$RACE_START" ]] && [[ ! "$TODAY" > "$RACE_END" ]]; then
+            echo "go=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Outside race dates ($RACE_START to $RACE_END). Skipping."
+            echo "go=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  session:
+    needs: gate
+    if: needs.gate.outputs.go == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false   # the agent can't push; only the save step can
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Prepare session
+        run: |
+          echo "START_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+          TODAY=$(date -u +%F)
+          DAY=$(( ( $(date -u -d "$TODAY" +%s) - $(date -u -d "$RACE_START" +%s) ) / 86400 + 1 ))
+          [ "$DAY" -lt 1 ] && DAY="0 (dry run)"
+          START=$(date -u +%H:%M)
+          DEADLINE=$(date -u -d "+${SESSION_MINUTES} minutes" +%H:%M)
+          echo "DAY=$DAY" >> "$GITHUB_ENV"
+          sed -e "s/__DATE__/$TODAY/" -e "s/__DAY__/$DAY/" \
+              -e "s/__START_TIME__/$START/" -e "s/__DEADLINE__/$DEADLINE/" \
+              .github/race/run-prompt.md > /tmp/prompt.md
+          # Keep trusted copies of the kit in case the agent edits .github/
+          cp .github/race/secret-guard.sh /tmp/secret-guard.sh
+          git config --global user.name "race-bot"
+          git config --global user.email "race-bot@users.noreply.github.com"
+
+      - name: Install Codex
+        run: npm install -g @openai/codex
+
+      - name: Run Codex
+        continue-on-error: true
+        env:
+          CODEX_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          EXTRA_FLAGS: ${{ vars.AGENT_EXTRA_FLAGS }}
+        run: |
+          set +e
+          timeout --signal=INT --kill-after=60s "${SESSION_MINUTES}m" \
+            codex exec --dangerously-bypass-approvals-and-sandbox --skip-git-repo-check $EXTRA_FLAGS "$(cat /tmp/prompt.md)"
+          code=$?
+          [ "$code" = "124" ] && echo "::warning::Session hit the ${SESSION_MINUTES}-minute limit."
+          exit $code
+
+      - name: Save the session
+        if: always()
+        env:
+          CODEX_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Squash the day's work into one commit and throw away any edits to .github/
+          git add -A
+          git reset --soft "$START_SHA"
+          git reset -q -- .github
+          git checkout -q "$START_SHA" -- .github
+          git clean -fdq -- .github
+          if git diff --cached --quiet; then
+            echo "Nothing changed today."
+            exit 0
+          fi
+          git commit -q -m "Day $DAY session ($AGENT)"
+          bash /tmp/secret-guard.sh "$START_SHA"
+          git push "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main

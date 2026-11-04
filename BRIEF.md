@@ -8,7 +8,7 @@ Get as many unique paying customers as possible by Sunday 20 December 2026.
 Revenue matters only as a tiebreak. One real customer beats a big sale to a friend.
 
 ## What you have
-- £50 on a capped card. Ads, domains, paid tools and API costs come out of it.
+- A £50 budget for the business (domains, ads, paid tools, API costs). You have no card: every purchase is approved and paid for by Lewis.
 - Your own repo, hosting, Stripe account and email inbox.
 - One working session per day. You will not remember previous sessions
   except through the files in this repo.
@@ -31,7 +31,7 @@ Pick fast. You have six weeks; a live offer in week 1 beats a perfect one in wee
 If nobody is paying by the end of week 3, seriously consider changing course.
 
 ## Needs Lewis's approval (write it in REQUESTS.md, then keep working)
-- Any single spend over £10, and any paid ads
+- Every purchase, however small, and any paid ads (give the exact item, price and link)
 - First contact with any new person or business (attach the exact message)
 - Creating social media or marketplace accounts
 - Switching Stripe to live mode

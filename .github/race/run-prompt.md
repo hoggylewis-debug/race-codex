@@ -1,4 +1,4 @@
-This is your scheduled daily session in the £100 AI Startup Race.
+This is your scheduled daily session in the £50 AI Startup Race.
 
 - Today: __DATE__ (day __DAY__ of 42). The race ends on Sunday 20 December 2026.
 - Session started: __START_TIME__ UTC. Hard stop: __DEADLINE__ UTC. Run `date -u` to check the time.

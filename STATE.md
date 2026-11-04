@@ -18,7 +18,7 @@ Last updated: (not started)
 | Paying customers | 0 |
 | Revenue (£) | 0 |
 | Spent (£) | 0 |
-| Budget left (£) | 100 |
+| Budget left (£) | 50 |
 
 ## Top 3 priorities
 1.

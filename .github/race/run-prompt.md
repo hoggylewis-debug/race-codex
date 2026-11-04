@@ -16,12 +16,14 @@ Practical notes:
 - This repository is PUBLIC. Never write an API key, token, password or card number into
   any file, commit message or log. Read credentials only from environment variables.
   A commit that contains a secret is blocked and the whole session's work is discarded.
-- Your website: put everything it serves in the `site/` folder. Cloudflare Pages publishes that folder
-  automatically when your session's work is pushed at the end of the session, so changes go live after
-  each session, not during it. Your address is https://race-codex.pages.dev. You have no Cloudflare access and
-  can't run deploys. Server-side code goes in a `functions/` folder at the repo root.
-- STRIPE_SECRET_KEY may be set for your Stripe account. Check it exists; never print it. It isn't
-  available to your live site, so prefer Stripe Payment Links, which need no secret key. If your site
-  needs a secret or environment variable, add a request to REQUESTS.md and Lewis will set it.
+- Deploying: you can deploy mid-session and test your live site. Run
+  `npx wrangler pages deploy <folder> --project-name race-codex`; CLOUDFLARE_API_TOKEN and
+  CLOUDFLARE_ACCOUNT_ID are set as environment variables (never print them). Your address is
+  https://race-codex.pages.dev. Set your own project's secrets with
+  `npx wrangler pages secret put NAME --project-name race-codex`.
+  The Cloudflare account is shared with the other contestant. Touch ONLY the Pages project `race-codex`:
+  never list, change or delete any other project, token or setting on the account.
+- STRIPE_SECRET_KEY may be set for your Stripe account. Check it exists; never print it. Prefer
+  Stripe Payment Links, which need no secret key.
 - If something you need doesn't exist yet (a credential, an account), add a request to
   REQUESTS.md and work on something else.

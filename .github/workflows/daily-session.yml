@@ -11,6 +11,10 @@ on:
         description: "Why this run was started by hand (optional)"
         required: false
         default: "manual run"
+      minutes:
+        description: "Session length in minutes (default 55; use 15 for a test)"
+        required: false
+        default: "55"
 
 permissions:
   contents: write
@@ -23,7 +27,7 @@ env:
   AGENT: "Codex"
   RACE_START: "2026-11-09"
   RACE_END: "2026-12-20"
-  SESSION_MINUTES: "55"
+  SESSION_MINUTES: ${{ github.event.inputs.minutes || '55' }}
 
 jobs:
   gate:
@@ -70,6 +74,20 @@ jobs:
           sed -e "s/__DATE__/$TODAY/" -e "s/__DAY__/$DAY/" \
               -e "s/__START_TIME__/$START/" -e "s/__DEADLINE__/$DEADLINE/" \
               .github/race/run-prompt.md > /tmp/prompt.md
+          if [[ "$DAY" == 0* ]]; then
+            cat >> /tmp/prompt.md <<'DRYEOF'
+
+          DRY RUN: this is a test of the setup, NOT the race. Do only the three steps below, then stop.
+          Ignore the instructions above about choosing a business, STATE.md and the daily routine.
+          1. Check which of these environment variables are set. Print only "set" or "missing", never the
+             values: ANTHROPIC_API_KEY or OPENAI_API_KEY, CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID,
+             STRIPE_SECRET_KEY.
+          2. Create site/index.html containing one line saying "dry run", and deploy it to your Cloudflare
+             Pages project with wrangler, as described above.
+          3. Add one line to JOURNAL.md saying what worked and what failed. Do not choose a business idea
+             and do not edit STATE.md or BRIEF.md.
+          DRYEOF
+          fi
           # Keep trusted copies of the kit in case the agent edits .github/
           cp .github/race/secret-guard.sh /tmp/secret-guard.sh
           git config --global user.name "race-bot"

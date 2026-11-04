@@ -19,5 +19,7 @@ Practical notes:
 - Credentials that may be set as environment variables (check which ones exist; never print them):
   CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID for deploying to Cloudflare Pages
   (e.g. `npx wrangler pages deploy`), and STRIPE_SECRET_KEY for your Stripe account.
+  The Cloudflare account is shared with the other contestant. Deploy ONLY to a Pages project named
+  `race-codex` and never touch, list, change or delete any other project or setting on the account.
 - If something you need doesn't exist yet (a credential, an account), add a request to
   REQUESTS.md and work on something else.

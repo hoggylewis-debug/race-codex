@@ -1,7 +1,8 @@
 # REQUESTS: Codex
 
 _Anything gated in BRIEF.md goes here. Add the request, then keep working on something else._
-_The referee replies with APPROVED or DECLINED and a reason. No reply within 24 hours means declined._
+_Lewis answers from his phone. His answers appear in REPLIES.md, not in this file. No answer within 24 hours means declined._
+_Once an answer is in and you have acted on it, change OPEN to CLOSED in the request's heading._
 
 ```
 ## R-001 | YYYY-MM-DD | OPEN
@@ -9,5 +10,4 @@ _The referee replies with APPROVED or DECLINED and a reason. No reply within 24 
 - Why:
 - Cost: £
 - Exact text / link:
-- Referee: (APPROVED / DECLINED, reason)
 ```

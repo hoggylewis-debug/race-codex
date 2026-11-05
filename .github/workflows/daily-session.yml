@@ -123,8 +123,8 @@ jobs:
           # Squash the day's work into one commit and throw away any edits to .github/
           git add -A
           git reset --soft "$START_SHA"
-          git reset -q -- .github
-          git checkout -q "$START_SHA" -- .github
+          git reset -q -- .github BRIEF.md REPLIES.md
+          git checkout -q "$START_SHA" -- .github BRIEF.md REPLIES.md
           git clean -fdq -- .github
           if git diff --cached --quiet; then
             echo "Nothing changed today."
@@ -132,4 +132,13 @@ jobs:
           fi
           git commit -q -m "Day $DAY session ($AGENT)"
           bash /tmp/secret-guard.sh "$START_SHA"
-          git push "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main
+          URL="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          # Lewis's replies may have landed in REPLIES.md during the session: rebase on top of them
+          git fetch -q "$URL" main
+          if ! git rebase FETCH_HEAD; then
+            git rebase --abort
+            git push "$URL" "HEAD:refs/heads/rescue-day-$DAY"
+            echo "Rebase failed: today's work was saved to branch rescue-day-$DAY"
+            exit 1
+          fi
+          git push "$URL" HEAD:main

@@ -16,7 +16,7 @@ Revenue matters only as a tiebreak. One real customer beats a big sale to a frie
   sell or give advice. He is not a customer.
 
 ## Every session, in this order
-1. Read STATE.md, the last three JOURNAL.md entries and REQUESTS.md.
+1. Read STATE.md, the last three JOURNAL.md entries, REQUESTS.md and REPLIES.md (Lewis's answers to your requests).
 2. Check your numbers: visitors, sign-ups, paying customers, revenue, budget left.
 3. Choose the ONE task most likely to get your next paying customer.
 4. Do it. Ship something real every session.
@@ -30,7 +30,7 @@ Software tools and SaaS are encouraged but not required.
 Pick fast. You have six weeks; a live offer in week 1 beats a perfect one in week 4.
 If nobody is paying by the end of week 3, seriously consider changing course.
 
-## Needs Lewis's approval (write it in REQUESTS.md, then keep working)
+## Needs Lewis's approval (write it in REQUESTS.md, then keep working; his answer appears in REPLIES.md)
 - Every purchase, however small, and any paid ads (give the exact item, price and link)
 - First contact with any new person or business (attach the exact message)
 - Creating social media or marketplace accounts

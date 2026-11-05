@@ -25,7 +25,7 @@ concurrency:
 
 env:
   AGENT: "Codex"
-  RACE_START: "2026-11-09"
+  RACE_START: "2026-11-06"
   RACE_END: "2026-12-20"
   SESSION_MINUTES: ${{ github.event.inputs.minutes || '55' }}
 

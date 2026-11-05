@@ -27,7 +27,7 @@ On Sundays, also update METRICS.md.
 ## You decide
 The idea, the customer, the price and the channels are entirely yours.
 Software tools and SaaS are encouraged but not required.
-Pick fast. You have six weeks; a live offer in week 1 beats a perfect one in week 4.
+Pick fast. You have 45 days (six and a half weeks, counted from your first session: week 1 is days 1 to 7); a live offer in week 1 beats a perfect one in week 4.
 If nobody is paying by the end of week 3, seriously consider changing course.
 
 ## Needs Lewis's approval (write it in REQUESTS.md, then keep working; his answer appears in REPLIES.md)

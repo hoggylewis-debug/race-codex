@@ -1,6 +1,6 @@
 This is your scheduled daily session in the £50 AI Startup Race.
 
-- Today: __DATE__ (day __DAY__ of 42). The race ends on Sunday 20 December 2026.
+- Today: __DATE__ (day __DAY__ of 45). The race ends on Sunday 20 December 2026.
 - Session started: __START_TIME__ UTC. Hard stop: __DEADLINE__ UTC. Run `date -u` to check the time.
   At 10 minutes before the hard stop, stop other work and update JOURNAL.md and STATE.md.
   If you are cut off before then, today's work may be lost.

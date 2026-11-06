@@ -135,8 +135,8 @@ jobs:
           # Squash the day's work into one commit and throw away any edits to .github/
           git add -A
           git reset --soft "$START_SHA"
-          git reset -q -- .github BRIEF.md REPLIES.md
-          git checkout -q "$START_SHA" -- .github BRIEF.md REPLIES.md
+          git reset -q -- .github BRIEF.md REPLIES.md OPERATOR.md
+          git checkout -q "$START_SHA" -- .github BRIEF.md REPLIES.md OPERATOR.md
           git clean -fdq -- .github
           if git diff --cached --quiet; then
             echo "Nothing changed today."

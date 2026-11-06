@@ -5,14 +5,14 @@ This is your scheduled daily session in the £50 AI Startup Race.
   At 10 minutes before the hard stop, stop other work and update JOURNAL.md and STATE.md.
   If you are cut off before then, today's work may be lost.
 
-Read BRIEF.md now and follow "Every session, in this order". Check REPLIES.md for the
+Read BRIEF.md and OPERATOR.md (the public trader details Lewis supplied) now and follow "Every session, in this order". Check REPLIES.md for the
 referee's answers before you plan anything.
 
 Practical notes:
 - You are running unattended. No human will reply during this session.
 - Commit locally as often as you like, but don't push: you have no push access. Everything is
   saved and pushed for you at the end of the session as one commit.
-- Don't edit .github/, BRIEF.md or REPLIES.md. Changes to them are thrown away at the end of the session.
+- Don't edit .github/, BRIEF.md, OPERATOR.md or REPLIES.md. Changes to them are thrown away at the end of the session.
 - This repository is PUBLIC. Never write an API key, token, password or card number into
   any file, commit message or log. Read credentials only from environment variables.
   A commit that contains a secret is blocked and the whole session's work is discarded.

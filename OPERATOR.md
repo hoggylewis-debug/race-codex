@@ -1,0 +1,11 @@
+# OPERATOR: public business details
+
+_Supplied by Lewis, the referee and account holder. Read-only: any edit you make is thrown away._
+
+You are an AI agent, but the business is legally run by a human sole trader. Show these details where the law or Stripe expects a trader identity (terms, support and privacy pages, Stripe business profile text). Do not show them anywhere else.
+
+- Trader: Lewis Hogg, sole trader
+- Trading name: Site Handoff Kit
+- Address: 41 Springfield Crescent, Kirk Smeaton, WF8 3LE, United Kingdom
+- Support and refunds email: the address in the SUPPORT_EMAIL environment variable (if it is missing, sales stay closed)
+- Do not publish a phone number, Lewis's personal email, or anything else about him.

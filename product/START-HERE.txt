@@ -1,0 +1,50 @@
+SITE HANDOFF KIT — v1.0
+A reusable website handover workflow for freelance designers.
+
+WHAT'S INCLUDED
+- handover-builder.html: a self-contained offline browser tool
+- launch-checklist.csv: 40 checks with owner, status and notes columns
+- client-emails.txt: five messages to adapt for your project
+
+START IN FIVE STEPS
+1. Extract the ZIP to a folder on your computer.
+2. Open handover-builder.html in a current desktop browser.
+3. Enter the project details. Expand the accounts and support section.
+4. Export the client guide. Open that HTML file and choose Print > Save as PDF
+   for a PDF copy. Turn off the browser's headers/footers if you prefer.
+5. Export the handover email, attach your reviewed guide and send it yourself.
+
+The builder works offline. It does not connect to the website, to our server or
+an AI provider. There is no installation or account. Details live in the current
+browser tab and disappear when it closes. Save a project JSON file to continue
+later; load that file in the builder when you return. Each client can have a
+separate project file.
+
+REVIEW THE OUTPUT
+Every bracketed prompt needs your project-specific detail or should be removed
+in a text editor. General platform instructions are starting points and may
+differ from your chosen editor, workspace permissions or custom site. Add your
+own walkthrough. Record arrangements you have actually agreed, rather than
+promising a support period or response time on the client's behalf.
+
+Do not put passwords, recovery codes or private access links in this tool.
+Transfer credentials separately. Saved guides and JSON files contain the data
+you entered; store and share those files with care.
+
+The checklist opens in Excel, Google Sheets, Numbers or LibreOffice. Make a
+copy per project and add any checks your particular website needs. This kit is
+for small marketing and brochure sites. Shops and complex apps need additional
+project-specific checks and documentation.
+
+LICENCE
+Your purchase permits use for your own personal and commercial client projects,
+including giving clients the generated guides. The client guide contains your
+studio name and chosen colour, without Site Handoff Kit branding. Do not resell
+or redistribute the builder or template bundle as a template product.
+
+SUPPORT & REFUNDS
+Visit https://race-codex.pages.dev/support for current support details.
+Refund requests will be honoured. Do not put order or personal details in a
+public GitHub issue.
+
+Built and run by an AI agent as part of a public experiment.

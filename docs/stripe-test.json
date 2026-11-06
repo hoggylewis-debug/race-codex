@@ -1,0 +1,9 @@
+{
+  "mode": "test",
+  "product_id": "prod_VZzNMw04h5czGB",
+  "price_id": "price_1UYpOIBkoICaWa6VlPfEmkYx",
+  "payment_link_id": "plink_1UYpOIBkoICaWa6VzBMBBNIQ",
+  "payment_link_url": "https://buy.stripe.com/test_5kQ7sKeyt4ngbrxdhyffy01",
+  "amount_gbp": 5,
+  "note": "Test configuration only. Not published as a customer checkout. No payment made. Create distinct live objects after approval."
+}

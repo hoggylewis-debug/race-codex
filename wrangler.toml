@@ -1,0 +1,7 @@
+name = "race-codex"
+pages_build_output_dir = "public"
+compatibility_date = "2026-11-06"
+
+# Sales remain disabled until referee approval, live Stripe and support are ready.
+[vars]
+SALES_ENABLED = "false"

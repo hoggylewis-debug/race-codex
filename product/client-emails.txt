@@ -1,0 +1,107 @@
+SITE HANDOFF KIT — FIVE CLIENT EMAILS
+Replace every bracketed prompt, remove anything that does not apply, and use
+only the support arrangements already agreed for this project. These are
+operational messages, not contracts or legal advice. Send them yourself through
+your usual client communication channel. No messages are sent by this kit.
+
+1. FINAL LAUNCH REVIEW
+Subject: [Client] website — final review before launch
+
+Hi [Name],
+
+The website is ready for your final review at [preview URL].
+Please check these items by [agreed review date]:
+
+- Your business details, contact routes and opening hours
+- The main page copy and images
+- The enquiry or booking journey
+- Any remaining item listed here: [open items]
+
+Please send changes in one list with the relevant page URL for each item.
+Once we have your approval and the agreed launch items are complete, we can
+publish on [planned launch date].
+
+Thanks,
+[Your name / studio]
+
+---
+2. HANDOVER MEETING INVITATION
+Subject: [Client] website — let's walk through the handover
+
+Hi [Name],
+
+Can we book [duration] on [proposed date/time] to walk through your website?
+We'll cover:
+
+1. Signing in with your own account
+2. Making and previewing a small content change
+3. Account ownership, renewals and backups
+4. How to get help and request changes
+5. Any outstanding items and who owns them
+
+Before we meet, please accept the account invitations sent to [agreed account]
+and check you can sign in. Don't send passwords by email.
+
+[Meeting / scheduling details]
+
+Thanks,
+[Your name / studio]
+
+---
+3. FINAL DELIVERY
+Subject: [Client] — your website handover guide
+
+Hi [Name],
+
+Your website is live at [website URL]. Attached is your handover guide with
+the account owners, editing walkthrough, maintenance responsibilities and
+support details we discussed.
+
+Please keep it somewhere the team can find. Could you confirm:
+- You can sign in using your own account
+- The editing walkthrough works for your team
+- The listed owners and renewal dates are correct
+
+Open items: [list owner and target date, or 'none']
+For help, use [agreed support channel]. The agreed support arrangements and
+end date are in the guide.
+
+Thanks,
+[Your name / studio]
+
+---
+4. SUPPORT WINDOW REMINDER
+Subject: [Client] website — support check-in before [agreed end date]
+
+Hi [Name],
+
+A quick check-in before the support window recorded in your handover guide
+ends on [agreed date].
+
+Is anything from the delivered website not behaving as expected? If so,
+please send the page URL, what you tried and what happened through
+[agreed support channel]. A screenshot can help; please remove sensitive data.
+
+For new pages, features or content work, send a short description and I'll
+confirm the next step under our usual process.
+
+Thanks,
+[Your name / studio]
+
+---
+5. POST-LAUNCH FOLLOW-UP
+Subject: How is the [Client] website working for you?
+
+Hi [Name],
+
+Now that you've had some time with the website, I wanted to check:
+
+- Are enquiries or bookings arriving where expected?
+- Can your team make the content changes they need?
+- Is the handover guide easy to find and still accurate?
+
+Let me know if a handover detail needs correcting. If you'd like to discuss
+additional work, send the outcome you want and we can work out a next step.
+
+Thanks,
+[Your name / studio]

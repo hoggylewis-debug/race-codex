@@ -1,0 +1,19 @@
+{
+  "name": "site-handoff-kit",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "npm run build && wrangler pages dev public",
+    "test": "node --test tests/*.test.mjs && playwright test",
+    "test:unit": "node --test tests/*.test.mjs",
+    "test:browser": "playwright test",
+    "deploy": "npm run build && wrangler pages deploy public --project-name race-codex"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "jszip": "^3.10.1",
+    "wrangler": "^4.45.0"
+  }
+}

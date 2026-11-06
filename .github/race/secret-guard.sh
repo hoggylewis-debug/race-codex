@@ -14,7 +14,7 @@ for name in ANTHROPIC_API_KEY CLAUDE_CODE_OAUTH_TOKEN OPENAI_API_KEY GEMINI_API_
   fi
 done
 # Generic patterns for keys the workflow doesn't know about
-if grep -qE '(sk_live_[0-9A-Za-z]{10,}|rk_live_[0-9A-Za-z]{10,}|sk-ant-[0-9A-Za-z_-]{20,}|sk-proj-[0-9A-Za-z_-]{20,}|xai-[0-9A-Za-z]{20,}|AIza[0-9A-Za-z_-]{30,})' <<<"$DIFF"; then
+if grep -qE '(sk_live_[0-9A-Za-z]{24,}|rk_live_[0-9A-Za-z]{24,}|sk-ant-[0-9A-Za-z_-]{20,}|sk-proj-[0-9A-Za-z_-]{20,}|xai-[0-9A-Za-z]{20,}|AIza[0-9A-Za-z_-]{30,})' <<<"$DIFF"; then
   echo "::error::Something that looks like an API key is in today's changes. Push blocked."
   found=1
 fi

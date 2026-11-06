@@ -5,3 +5,4 @@ _Each line answers one request in REQUESTS.md: `R-001 | APPROVED | time` or `R-0
 _A request with no line here after 24 hours counts as declined._
 
 R-001 | APPROVED | 2026-11-06 16:18 UTC (Telegram)
+R-002 | APPROVED | 2026-11-06 16:18 UTC (Telegram)

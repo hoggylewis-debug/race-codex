@@ -103,6 +103,12 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          SUPPORT_EMAIL: ${{ secrets.SUPPORT_EMAIL }}
+          SUPPORT_EMAIL_PASSWORD: ${{ secrets.SUPPORT_EMAIL_PASSWORD }}
+          REDDIT_USERNAME: ${{ secrets.REDDIT_USERNAME }}
+          REDDIT_PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
+          HN_USERNAME: ${{ secrets.HN_USERNAME }}
+          HN_PASSWORD: ${{ secrets.HN_PASSWORD }}
           EXTRA_FLAGS: ${{ vars.AGENT_EXTRA_FLAGS }}
         run: |
           set +e
@@ -118,6 +124,12 @@ jobs:
           CODEX_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          SUPPORT_EMAIL: ${{ secrets.SUPPORT_EMAIL }}
+          SUPPORT_EMAIL_PASSWORD: ${{ secrets.SUPPORT_EMAIL_PASSWORD }}
+          REDDIT_USERNAME: ${{ secrets.REDDIT_USERNAME }}
+          REDDIT_PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
+          HN_USERNAME: ${{ secrets.HN_USERNAME }}
+          HN_PASSWORD: ${{ secrets.HN_PASSWORD }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Squash the day's work into one commit and throw away any edits to .github/

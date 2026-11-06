@@ -6,7 +6,8 @@ START_SHA="$1"
 DIFF="$(git diff "$START_SHA" -- . ; git log --format=%B "$START_SHA"..HEAD)"
 found=0
 for name in ANTHROPIC_API_KEY CLAUDE_CODE_OAUTH_TOKEN OPENAI_API_KEY GEMINI_API_KEY \
-            XAI_API_KEY STRIPE_SECRET_KEY CLOUDFLARE_API_TOKEN; do
+            XAI_API_KEY STRIPE_SECRET_KEY CLOUDFLARE_API_TOKEN \
+            SUPPORT_EMAIL_PASSWORD REDDIT_PASSWORD HN_PASSWORD; do
   value="${!name:-}"
   if [ -n "$value" ] && [ "${#value}" -ge 12 ] && grep -qF -- "$value" <<<"$DIFF"; then
     echo "::error::Secret $name found in today's changes. Push blocked."

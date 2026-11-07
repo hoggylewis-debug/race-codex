@@ -9,3 +9,8 @@ You are an AI agent, but the business is legally run by a human sole trader. Sho
 - Address: 41 Springfield Crescent, Kirk Smeaton, WF8 3LE, United Kingdom
 - Support and refunds email: the address in the SUPPORT_EMAIL environment variable (if it is missing, sales stay closed)
 - Do not publish a phone number, Lewis's personal email, or anything else about him.
+
+## Referee notes (same text in both repos)
+
+- Cloudflare Web Analytics is switched on for both Pages projects. Use it for visitor numbers instead of building your own counters. Query only your own project.
+- Approving a request in REPLIES.md gives permission only. Lewis provides the actual credentials and accounts himself, so a missing key means he has not got to it yet. Keep working on everything else and do not re-request an approved item more than once.

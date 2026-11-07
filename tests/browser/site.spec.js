@@ -43,3 +43,30 @@ test('offline product runs from a local file, exports, saves and reloads without
 test('missing checkout reference shows a useful recovery message',async({page})=>{
  await page.goto('/success');await expect(page.locator('#download-status')).toContainText('No valid checkout reference');await expect(page.locator('#download-kit')).toBeHidden();
 });
+test('email resource personalises locally, exports plain text and handles clipboard denial',async({page})=>{
+ await page.goto('/website-handover-email-template');
+ await page.waitForLoadState('networkidle');
+ const requests=[]; page.on('request', request=>requests.push(request.url()));
+ await page.locator('[name=emailClient]').fill('Acme <script>alert(1)</script>');
+ await page.locator('[name=emailName]').fill('Jo');
+ await page.locator('[name=emailStudio]').fill('Studio $&');
+ await page.locator('[name=emailURL]').fill('https://example.com');
+ await page.locator('[name=emailSupport]').fill('The project support board');
+ await expect(page.locator('#email-output')).toHaveValue(/Hi Jo,/);
+ await expect(page.locator('#email-output')).toHaveValue(/Acme <script>alert\(1\)<\/script>/);
+ await expect(page.locator('#email-output')).toHaveValue(/Studio \$&/);
+ await expect(page.locator('#email-output')).toHaveValue(/\[list each item/);
+ await page.evaluate(()=>Object.defineProperty(navigator,'clipboard',{value:{writeText:async()=>{throw new Error('denied')}}}));
+ await page.locator('#copy-email').click();
+ await expect(page.locator('#email-template-status')).toContainText('Email selected');
+ const promise=page.waitForEvent('download'); await page.locator('#download-email-template').click();
+ const download=await promise; expect(download.suggestedFilename()).toBe('website-handover-email.txt');
+ const fs=await import('node:fs/promises');
+ expect(await fs.readFile(await download.path(),'utf8')).toContain('The project support board');
+ expect(requests).toEqual([]);
+ await page.setViewportSize({width:375,height:812});
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(375);
+ await page.reload();
+ await expect(page.locator('[name=emailClient]')).toHaveValue('');
+ await expect(page.locator('#email-output')).toHaveValue(/\[Client\]/);
+});

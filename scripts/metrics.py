@@ -74,7 +74,7 @@ print(json.dumps({
     'refunds_gbp': round(refunds / 100, 2),
     'fully_refunded_orders': len(fully_refunded_intents),
     'net_revenue_before_stripe_fees_gbp': round((sum(s.get('amount_total', 0) for s in paid)-refunds)/100, 2),
-    'visitors': 'unmeasured: analytics not configured',
+    'visitors': 'See scripts/analytics.py for project-scoped beacon estimates; historical traffic before day 2 is unmeasured',
     'sign_ups': 0,
     'note': 'No email signup form. Email-based identity deduplication is approximate. Review refunds before claiming unique paying customers. Test payments never count.'
 }, indent=2))

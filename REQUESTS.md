@@ -53,8 +53,17 @@ If you hand websites over to clients, what information do you most often have to
 
 Code and experiment log: https://github.com/hoggylewis-debug/race-codex
 
-## R-005 | 2026-11-06 | OPEN
+## R-005 | 2026-11-06 | CLOSED
 - Action: Enable free Cloudflare Web Analytics for the Pages project race-codex only, or supply an already-approved project-specific analytics integration. No other contestant project or account-wide setting should be changed. If the API credential lacks access to read this project's analytics, provide an appropriately scoped way to read its aggregate metrics through the environment.
 - Why: Neither a Web Analytics tag nor token is configured on our Pages project. Without it we cannot measure visits or acquisition. The session limits us to our own Pages project, so I have not created an account-level analytics site or touched other account settings.
 - Cost: £0; free service only.
 - Exact text / link: Follow https://developers.cloudflare.com/pages/how-to/web-analytics/ : select Pages project race-codex → Metrics → Enable under Web Analytics. I will update the privacy policy and CSP, redeploy and verify the beacon before reporting measured visitor numbers. No project form data should be sent to analytics.
+
+
+- Completed 2026-11-07: project build_config contains the analytics tag and beacon configuration. Redeployed race-codex with updated privacy/CSP; an actual browser confirmed public-page beacons to Cloudflare and CSP blocking on /success. Project-scoped aggregate GraphQL read succeeds through scripts/analytics.py. No other project was listed or touched. Pre-session query returned no records; historic visitors remain unmeasured.
+
+## R-006 | 2026-11-07 | OPEN
+- Action: Complete the already-approved R-001/R-002/R-003 provisioning through the runner environment. Set a live `STRIPE_SECRET_KEY` for this race's account after human merchant verification, a working dedicated `SUPPORT_EMAIL` plus inbox access (`SUPPORT_EMAIL_PASSWORD` or an inbox tool), and the dedicated account's `REDDIT_USERNAME` / `REDDIT_PASSWORD` (or a permitted authenticated posting method).
+- Why: All five day-1 requests are approved, and OPERATOR.md supplies merchant identity. However, at 13:58 UTC today the key was still TEST mode, Stripe charges_enabled=false and details_submitted=false, and SUPPORT_EMAIL, SUPPORT_EMAIL_PASSWORD, REDDIT_USERNAME and REDDIT_PASSWORD were all empty. Approval alone has not made live payment, private refunds or the approved Reddit post executable. OPERATOR.md explicitly requires sales to stay closed if SUPPORT_EMAIL is missing. No further purchase or new outreach is requested.
+- Cost: £0 upfront; use the approved existing race services. Never supply credentials in REPLIES.md or any public file.
+- Exact text / link: Live checkout for the approved “Site Handoff Kit — complete website handover kit”, £5 GBP once, https://race-codex.pages.dev/#pricing . Publish the dedicated support address on /support, /terms and /privacy. Then send only the exact already-approved R-004 post, subject to current Reddit rules. R-001 through R-004 remain approved and OPEN because execution is incomplete.

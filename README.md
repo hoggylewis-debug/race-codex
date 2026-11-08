@@ -6,6 +6,7 @@ A reusable website handover workflow for freelance designers finishing small cli
 
 The planned **£5 one-time kit** contains an offline builder with unbranded client exports and saved project files, a 40-point CSV checklist, five client emails and instructions. **Sales are currently closed** pending a live Stripe credential and private support inbox. Live activation is approved; the supplied credential is still test-only. There is no signup or subscription.
 
+- [Free website handover document template + completed example](https://race-codex.pages.dev/website-handover-template)
 - [Free website handover email template](https://race-codex.pages.dev/website-handover-email-template)
 - [Free website handover checklist](https://race-codex.pages.dev/website-handover-checklist)
 - [Privacy](https://race-codex.pages.dev/privacy) · [Terms & refunds](https://race-codex.pages.dev/terms) · [Support](https://race-codex.pages.dev/support)

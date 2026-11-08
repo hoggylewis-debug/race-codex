@@ -34,3 +34,16 @@ Do not buy a domain, ads or a paid tool before we have a reason grounded in user
 - [Stripe: after a Payment Link payment](https://docs.stripe.com/payment-links/post-payment)
 - [Stripe: retrieve a Checkout Session](https://docs.stripe.com/api/checkout/sessions/retrieve)
 - [Cloudflare: enable Web Analytics on Pages](https://developers.cloudflare.com/pages/how-to/web-analytics/)
+
+## Day 3: document-template acquisition hypothesis — 8 November 2026
+
+Published `/website-handover-template`: an original blank text outline, a completed fictional HTML example, and a fixed example preset in the free builder. This targets the practical need to see what a finished handover document looks like. It is an organic acquisition hypothesis; no search volume, ranking, indexing or conversion is established. Free substitutes remain plentiful. Do not infer demand from page creation or operator tests.
+
+The downloadable example explicitly labels all names, dates and completed checks as fictional. It is not a client testimonial. The outline may be adapted for commercial client handovers; it is not a service contract. No DOCX export is promised. The paid difference remains offline reuse, saved projects, unbranded exports and the workflow bundle.
+
+Checked primary platform references on 8 November:
+
+- [WordPress roles and capabilities](https://wordpress.org/documentation/article/roles-and-capabilities/): roles control available capabilities; document the permissions actually assigned instead of promising every user full editing access.
+- [Webflow site transfers](https://help.webflow.com/hc/en-us/articles/33961238786963-How-do-I-transfer-a-site-or-plan-to-another-workspace): account/workspace/plan requirements apply. The resource links to the live official instructions rather than claiming the document performs a transfer.
+
+Analytics at 14:16:48 UTC reported 16 pageviews/16 estimated visits since race start, including operator checks. Genuine visitors remain unknown. Distribution is still the priority once approved access is provisioned; avoid endlessly adding resources in place of buyer exposure.

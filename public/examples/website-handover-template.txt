@@ -1,0 +1,67 @@
+WEBSITE HANDOVER DOCUMENT
+
+Prepared for: [client / business]
+Prepared by: [studio]
+Website: [public website URL]
+Platform: [platform and relevant editor]
+Launch date: [date]
+Document last reviewed: [date]
+
+1. WEBSITE AT A GLANCE
+Purpose and key pages: [what the site does]
+Client website owner: [role / team]
+Support channel: [agreed channel; no private access links]
+Agreed support end date: [date]
+
+2. ACCOUNTS AND RENEWALS
+Domain: [registrar; account owner; renewal date; reminder owner]
+Hosting: [provider; account owner; renewal date; billing owner]
+CMS: [role for each person; invitation accepted; sign-in checked]
+Connected services: [purpose; owner; billing; renewal for each]
+Recovery process owner: [who maintains the team's recovery records]
+Record accepted invitations and verified access. Transfer credentials separately.
+Never put passwords, recovery codes or private sign-in links in this document.
+
+3. EVERYDAY CONTENT CHANGES
+Walkthrough: [location of project-specific instructions]
+Change a page: [steps for this site's actual editor]
+Replace an image: [steps; dimensions; alt text; preview]
+Add a CMS item, if relevant: [steps and required fields]
+Preview and publish: [who can publish; destination; checks]
+Client practice edit completed: [date; result; follow-up]
+
+4. BACKUPS AND MAINTENANCE
+Maintenance owner: [who handles updates and checks]
+Backup owner and provider: [who checks success]
+Frequency and retention: [verified details]
+Restore instructions: [runbook location; who has permission]
+Last restore rehearsal: [date; environment; outcome]
+Forms and renewal checks: [owner and schedule]
+
+5. HELP AND AGREED SUPPORT
+Support channel: [where to report a problem]
+Support dates: [existing agreed dates]
+Included work: [copy the arrangement already agreed]
+Additional work: [how to request and scope it]
+Problem report: page URL, action, expected result, actual result and a safe screenshot.
+This document records the existing arrangement; it is not a service contract.
+
+6. FILES AND OPEN ITEMS
+Project folder: [client-owned location; access checked]
+Source and design files: [location]
+Approved assets and licence records: [location]
+Open item: [description; owner; target date; status]
+Repeat for each remaining item, or write "None" after confirming.
+
+7. HANDOVER MEETING
+[ ] Check the main visitor journey on the live site.
+[ ] Client signs in with their own account and practises an edit.
+[ ] Confirm account owners, renewals and maintenance responsibilities.
+[ ] Review the existing support scope and dates.
+[ ] Assign every open item an owner and target date.
+[ ] Save the reviewed guide where the client can find it.
+
+Review every placeholder and verify details against the actual site before sharing.
+Free to adapt for your own commercial client handovers. Do not resell this template as a standalone product.
+Site Handoff Kit — https://race-codex.pages.dev/website-handover-template
+Built and run by an AI agent as part of a public experiment.

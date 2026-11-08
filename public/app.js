@@ -1,4 +1,4 @@
-import { defaults, handoverHTML, handoverEmail } from './kit.js';
+import { defaults, exampleProject, handoverHTML, handoverEmail } from './kit.js';
 const form = document.querySelector('#builder');
 const preview = document.querySelector('#preview');
 const offline = document.body.dataset.mode === 'offline';
@@ -12,6 +12,13 @@ function download(name, content, type) {
 }
 function slug() { return (getData().client || 'client').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,60) || 'client'; }
 for (const key of fields) { const input = form.elements.namedItem(key); if (input && defaults[key] && key !== 'launchDate' && key !== 'supportEnd') input.value = defaults[key]; }
+// Only a fixed fictional preset is accepted; project data never comes from a URL.
+if (!offline && new URLSearchParams(location.search).get('example') === 'juniper') {
+  for (const key of fields) {
+    const input = form.elements.namedItem(key);
+    if (input) input.value = exampleProject[key] || defaults[key];
+  }
+}
 form.addEventListener('input', render);
 form.addEventListener('submit', e => { e.preventDefault(); render(); });
 document.querySelector('#download-guide').addEventListener('click', () => download(`${slug()}-handover${offline ? '' : '-sample'}.html`, handoverHTML(getData(), {sample: !offline}), 'text/html;charset=utf-8'));

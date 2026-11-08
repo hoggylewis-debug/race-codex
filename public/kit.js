@@ -12,6 +12,22 @@ export const defaults = {
   openItems: 'Review the placeholders in this guide and record any outstanding work before sharing.',
   accent: '#173a36'
 };
+// Fictional completed project used by the public template resource.
+export const exampleProject = {
+  client: 'Juniper Ceramics (fictional example)', studio: 'Northline Design (fictional example)',
+  url: 'https://example.com', platform: 'WordPress', accent: '#173a36',
+  launchDate: '2026-11-06', supportEnd: '2026-12-06',
+  supportChannel: 'The shared project support board, linked in the client project folder',
+  domain: 'Client business account at the registrar. Client director owns renewal. Example renewal: 6 November 2027. Confirm the reminder reaches the client.',
+  hosting: 'Client-owned managed hosting account. Client director owns billing. Example renewal: 6 November 2027. Designer access is a separate invited account.',
+  access: 'Client director: administrator invitation accepted. Content lead: editor invitation accepted and a test edit completed. Designer: separate maintenance account. Review access when the support arrangement changes.',
+  services: 'Contact form: hosted with the site; content lead checks delivery. No paid third-party integrations in this fictional project. Add real services and renewals for your site.',
+  editing: 'Project folder: Training / Editing-walkthrough.pdf. To change the About page: sign in with your own account, open Pages, choose About, edit the text and preview it. Check the phone layout, then Update. The content lead practised this during handover. Follow the recorded walkthrough for this fictional site; your editor may differ.',
+  backups: 'Example arrangement: hosting provider runs daily backups with 14-day retention. Designer checks backup status during the agreed support window; the client appoints a maintenance owner afterward. Restore rehearsal completed on a staging copy on 5 November 2026. Steps: Project folder / Maintenance / Restore-runbook.pdf. Confirm your real provider, retention and restore process.',
+  supportScope: 'Example of an already-agreed arrangement: fixes to delivered pages through 6 December 2026. New pages, additional features and ongoing content updates are separately scoped. Copy your actual agreed scope and dates here.',
+  assets: 'Client-owned project folder: Source / for design files; Assets / for approved logos, photos and font records; Training / for the walkthrough; Maintenance / for the restore runbook. Client director confirmed folder access.',
+  openItems: 'Client content lead to supply the final studio photograph by 10 November 2026. Designer to replace the approved placeholder by 12 November 2026. Record completion in the project board.'
+};
 export const platforms = {
   WordPress: [
     ['Edit a page', 'Sign in using your own editor account. Open Pages, select the page and choose Edit. Preview your change before publishing or updating. Your theme or page builder may use a different editor; follow the project walkthrough below.'],

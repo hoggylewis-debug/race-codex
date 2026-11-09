@@ -1,6 +1,6 @@
 export function salesReady(env) {
   return env.SALES_ENABLED === 'true'
-    && /^sk_live_/.test(env.STRIPE_SECRET_KEY || '')
+    && /^(?:sk|rk)_live_[A-Za-z0-9_]+$/.test(env.STRIPE_SECRET_KEY || '')
     && /^plink_[A-Za-z0-9]+$/.test(env.PAYMENT_LINK_ID || '')
     && /^https:\/\/buy\.stripe\.com\/(?!test_)[A-Za-z0-9]+$/.test(env.PAYMENT_LINK_URL || '')
     && Boolean(env.PRIVATE_SUPPORT_EMAIL && env.MERCHANT_NAME);

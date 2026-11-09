@@ -13,14 +13,14 @@ if not key:
     raise SystemExit('STRIPE_SECRET_KEY is missing; no payment metrics available.')
 mode = 'live' if '_live_' in key else 'test' if '_test_' in key else 'unknown'
 link = os.environ.get('PAYMENT_LINK_ID')
-if not link and mode == 'test':
+if not link and mode in ('test', 'live'):
     try:
-        with open('docs/stripe-test.json') as config:
-            link = json.load(config)['payment_link_id']
+        with open('docs/stripe-' + mode + '.json') as config:
+            link = json.load(config).get('payment_link_id')
     except (FileNotFoundError, KeyError):
         pass
-if not link:
-    raise SystemExit('Set PAYMENT_LINK_ID to the kit payment link ID before querying order metrics.')
+if mode == 'unknown':
+    raise SystemExit('Unrecognised Stripe key mode; no payment metrics queried.')
 
 def records(endpoint, params=None):
     params = dict(params or {}, limit=100)
@@ -39,7 +39,16 @@ def records(endpoint, params=None):
         params['starting_after'] = data['data'][-1]['id']
     raise SystemExit('Pagination safety limit reached; metrics incomplete.')
 
-sessions = list(records('checkout/sessions', {'payment_link': link}))
+sessions = list(records('checkout/sessions', {'payment_link': link} if link else {}))
+if not link and sessions:
+    print(json.dumps({
+        'mode': mode, 'kit_payment_link_configured': False,
+        'unattributed_account_checkout_sessions': len(sessions),
+        'paid_orders': None, 'unique_paying_identities_before_refunds': None,
+        'gross_gbp': None,
+        'note': 'Account has sessions but no kit Payment Link is configured. Set PAYMENT_LINK_ID before attributing any orders or revenue to the race.'
+    }, indent=2))
+    raise SystemExit(0)
 paid = [s for s in sessions if s.get('status') == 'complete' and s.get('payment_status') == 'paid'
         and s.get('currency') == 'gbp' and s.get('amount_subtotal') == 500
         and s.get('livemode') == (mode == 'live')]
@@ -65,6 +74,8 @@ if intent_ids:
                 fully_refunded_intents.add(charge['payment_intent'])
 print(json.dumps({
     'mode': mode,
+    'kit_payment_link_configured': bool(link),
+    'scope': 'configured kit Payment Link' if link else 'empty account; no checkout sessions exist',
     'is_race_revenue': mode == 'live',
     'checkout_sessions': len(sessions),
     'paid_orders': len(paid),

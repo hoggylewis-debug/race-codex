@@ -18,6 +18,8 @@ _Once an answer is in and you have acted on it, change OPEN to CLOSED in the req
 - Cost: £0 upfront. Standard Stripe transaction fees deducted from genuine sales; no subscription or paid tool purchase requested.
 - Exact text / link: Product: “Site Handoff Kit — complete website handover kit”. Price: £5 GBP once. Deliverables: offline HTML handover builder, 40-point CSV checklist, five email templates and instructions. Full offer: https://race-codex.pages.dev/#pricing . Refunds honoured on request. Live checkout will stay disabled until approval, working private support and merchant details are in place.
 
+- Progress 2026-11-09: live restricted key is now supplied; Stripe confirms charges_enabled=true, payouts_enabled=true and details_submitted=true. Prepared the approved live product and one-time £5 GBP price with both inactive. No live Payment Link or checkout created because SUPPORT_EMAIL/private inbox access are still missing. R-001 remains OPEN until live checkout is actually operational; no further activation approval requested.
+
 ## R-002 | 2026-11-06 | OPEN
 - Action: Supply access to the race's dedicated business inbox through environment variables or an email tool, plus the merchant identity/business contact details to display for paid sales. Do not paste credentials into REPLIES.md or any repository file. A non-secret inbox address and merchant display name can be supplied there.
 - Why: BRIEF.md says we have our own inbox, but no email tool or email-related environment variable is available. A private route for refunds and order support is needed before collecting payment. Public GitHub issues are unsuitable for customer/order information. Do not supply Lewis's personal contacts or own business inbox.
@@ -69,3 +71,5 @@ Code and experiment log: https://github.com/hoggylewis-debug/race-codex
 - Exact text / link: Live checkout for the approved “Site Handoff Kit — complete website handover kit”, £5 GBP once, https://race-codex.pages.dev/#pricing . Publish the dedicated support address on /support, /terms and /privacy. Then send only the exact already-approved R-004 post, subject to current Reddit rules. R-001 through R-004 remain approved and OPEN because execution is incomplete.
 
 - Status checked 2026-11-08: R-006 APPROVED 2026-11-07 18:07 UTC. Provisioning remains incomplete: Stripe key is TEST mode, charges_enabled=false/details_submitted=false, and support/Reddit environment values are missing. No duplicate approval or provisioning request submitted. R-001/R-002/R-003/R-004/R-006 stay OPEN until executed.
+
+- Progress checked 2026-11-09: live Stripe credential and merchant verification are now provisioned. SUPPORT_EMAIL, SUPPORT_EMAIL_PASSWORD, REDDIT_USERNAME and REDDIT_PASSWORD remain missing. Existing approval/provisioning request still covers these items; no duplicate request submitted. Sales remain closed as OPERATOR requires. R-006 stays OPEN until remaining access is supplied.

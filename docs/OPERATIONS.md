@@ -6,7 +6,7 @@ Read STATE.md and the race session order first. This is a public repository: no 
 
 - `npm ci`
 - `npm run build`
-- `npm run test:unit`
+- `npm run test:unit` and `npm run test:ops`
 - `npx playwright install chromium` if browser binaries are missing
 - `npm run test:browser`
 - `npm run deploy` (only Pages project `race-codex`)
@@ -20,10 +20,10 @@ No server database, cookies or marketing pixels are configured. Cloudflare Web A
 All of these are required before opening checkout:
 
 1. R-001 was APPROVED on 6 November 2026. This approval persists: do not request it again. Read current replies for provisioning updates. R-006 was APPROVED on 7 November and identifies missing access; approvals for R-001 through R-004 exist but execution is incomplete.
-2. Obtain live Stripe access through environment variables and verify charges are enabled. Do not log or save a key. Do not attempt identity verification on behalf of a human.
-3. Obtain the dedicated inbox and private support access (R-002/R-006). SUPPORT_EMAIL was empty on day 2: OPERATOR.md requires sales to remain closed until it exists. Confirm the inbox works. OPERATOR.md supplies the trader identity and address; they are now published only on /terms, /privacy and /support. Build reads the publishable SUPPORT_EMAIL if provided. Never use Lewis's personal/business contacts or credentials.
+2. Live Stripe access is now provisioned (9 November): restricted live key, charges_enabled=true, payouts_enabled=true, details_submitted=true. `python scripts/stripe-live.py` performs a read-only access/catalogue check. The server accepts live standard and restricted keys; test/public keys remain blocked. Verify restricted-key permissions when using each API; never print a key. Human verification is complete; do not redo it.
+3. Obtain the dedicated inbox and private support access (R-002/R-006). SUPPORT_EMAIL remains empty on day 4: OPERATOR.md requires sales to remain closed until it exists. Confirm the inbox works. OPERATOR.md supplies the trader identity and address; they are now published only on /terms, /privacy and /support. Build reads the publishable SUPPORT_EMAIL if provided. Never use Lewis's personal/business contacts or credentials.
 4. Update the support page, terms and privacy source. Include the actual merchant identity, private refund address and payment data handling before collecting payment. Stripe will process checkout email/order data; document actual retention and deletion/access contact. Publish the unconditional refund policy. The current text explicitly says sales are closed and must be rewritten before opening them.
-5. Configure the actual business support and policy URLs in the race Stripe account as appropriate. Create a LIVE £5 GBP one-time product/price/Payment Link. Do not reuse test IDs. Restrict initial payment methods to promptly confirmed methods, e.g. cards. Do not enable tax features, subscriptions, new paid tools or additional purchases without relevant approval.
+5. Configure the actual business support and policy URLs in the race Stripe account as appropriate. The LIVE £5 GBP one-time product and price already exist: their public catalogue IDs are in docs/stripe-live.json. Both are inactive. Reuse them rather than creating duplicates. `python scripts/stripe-live.py --prepare-catalogue` reconciles this catalogue without enabling it or creating a link. Only after private support and updated policies are ready, activate this product/price and create the LIVE Payment Link, tagged with metadata race_project=race-codex. Save only the public payment_link_id in docs/stripe-live.json (or configure PAYMENT_LINK_ID in the runner environment). Do not reuse test IDs. Restrict initial payment methods to promptly confirmed methods, e.g. cards. Do not enable tax features, subscriptions, new paid tools or additional purchases without relevant approval.
 6. Set the Payment Link to redirect to `https://race-codex.pages.dev/success?session_id={CHECKOUT_SESSION_ID}` after payment. The braces placeholder is literal in the Stripe setting. Session references are private download credentials; never put real ones in repo files or logs.
 7. Set production Pages secrets only for project `race-codex`: `STRIPE_SECRET_KEY`, `PAYMENT_LINK_ID`, `PAYMENT_LINK_URL`, `PRIVATE_SUPPORT_EMAIL`, `MERCHANT_NAME`. Feed values to Wrangler from environment/stdin; never echo them into logs or write temporary secret files. Example for the key, after approval: `printenv STRIPE_SECRET_KEY | npx wrangler pages secret put STRIPE_SECRET_KEY --project-name race-codex`. No actual key value should appear in the command.
 8. Change `SALES_ENABLED` in wrangler.toml to `true` only after the above. Deploy, verify status, policy pages and the real hosted checkout configuration. Update the sales-closed fallback text in `scripts/build.mjs`; the browser enables the buy link only when `/api/status` reports ready. Include a useful service-outage fallback.
@@ -32,7 +32,7 @@ All of these are required before opening checkout:
 
 ## Metrics
 
-Run `python scripts/metrics.py`. It reads Stripe via environment credentials, uses `PAYMENT_LINK_ID` (or the saved test ID in test mode), and prints only aggregate counts and money. It never prints or saves customer emails or IDs. It explicitly labels test-mode results. A test key cannot verify live account numbers.
+Run `python scripts/metrics.py`. It reads Stripe via environment credentials, uses `PAYMENT_LINK_ID` (or the saved docs/stripe-live.json or docs/stripe-test.json link for the key mode), and prints only aggregate counts and money. It never prints or saves customer emails or IDs. It explicitly labels live/test results. A test key cannot verify live account numbers. With no configured link, it checks account sessions: an empty account establishes zero; any nonempty account is reported as unattributed with null kit orders/revenue, never claimed as race sales. Day 4 live read confirms zero sessions/payments. No customer records are logged or saved.
 
 The baseline is zero paid customers, revenue and spend. Traffic before the day-2 deployment is **unmeasured**, not zero. Sign-ups are zero because there is no signup form. Operator browser checks are not customer visits. No event tracking for sample downloads or email copies exists; do not claim those counts.
 
@@ -51,15 +51,24 @@ No email/DM campaign, scraped contacts or paid ads have been authorized. The pub
 
 `/website-handover-email-template` is a free, indexed landing page aimed at designers ready to deliver a client site. It personalises one final-delivery email, supports copy (with selection fallback) and plain-text download, and points to the guide builder and £5 offer. Fields stay in tab memory. No email is sent or address collected. Source is generated by scripts/build.mjs; interaction lives in public/email-template.js. The complete kit still includes five templates and the reusable offline builder.
 
-## Current access blockers (8 November)
+## Current access blockers (9 November)
 
-- Stripe key exists but is test-only. Account charges_enabled=false, details_submitted=false. Human verification/live key provisioning remains needed.
+- Stripe provisioning is complete: restricted live key and verified merchant. Inactive product/price are prepared; no Payment Link exists and no live Stripe secret is deployed to Pages. Key read access for account/catalogue/session listing and write access for product/price have succeeded. No real payment, session retrieval or refund has been exercised; do not claim those tested.
 - SUPPORT_EMAIL and SUPPORT_EMAIL_PASSWORD are empty; no inbox connector exists. OPERATOR.md forbids opening sales without the address.
 - REDDIT_USERNAME and REDDIT_PASSWORD are empty; no authenticated Reddit tool/session exists. Account creation/posting approval does not provide authentication. R-003/R-004 are approved but no account or post has been created. Do not bypass platform verification. Recheck official community rules at the time of posting; day-2 search results are not a rules check.
-- R-006 is approved but provisioning remains incomplete as of day 3. Do not re-request the approved items. No new purchase or broader outreach is authorized.
+- R-006 is approved; support and Reddit provisioning remain incomplete as of day 4. Do not re-request approved items. No new purchase or broader outreach is authorized. OPERATOR requires sales closed while SUPPORT_EMAIL is missing.
 
 ## Day-3 document resource
 
 `/website-handover-template` provides a blank `.txt` outline, a completed fictional HTML example and `/?example=juniper#try` to load that fixed example into the free builder. The page works without JavaScript for reading/downloading. No arbitrary project data is loaded from query parameters. Example source lives in `public/kit.js` (`exampleProject`); resource copy and text outline live in `scripts/template-resource.mjs`. Build writes `public/examples/website-handover.html` (noindex) and `public/examples/website-handover-template.txt`. The printable example is branded like the existing free sample, explicitly fictional, and not a customer testimonial. No DOCX export exists.
 
 Day-3 validation passed 8 unit and 7 browser tests, plus production browser checks of new routes, fixed preset, mobile width, closed sales, download 503, public static ZIP 404 and no analytics beacon on /success. Deployment: https://601d0c22.race-codex.pages.dev .
+
+
+## Day-4 launch preparation
+
+The live catalogue was created through the approved race Stripe account with both product and price inactive. No Payment Link was created: Stripe’s documented creation API creates an active link by default, and we have no support inbox yet. The offer must not become purchasable before that inbox is operational. API references: [product creation](https://docs.stripe.com/api/products/create), [price creation](https://docs.stripe.com/api/prices/create), [Payment Link creation](https://docs.stripe.com/api/payment-link/create), [deactivation](https://docs.stripe.com/api/payment-link/update).
+
+`scripts/stripe-live.py` defaults to GET-only checks. `--prepare-catalogue` explicitly creates only the inactive catalogue, uses idempotency keys and metadata/lookup-key reconciliation, and saves only whitelisted public catalogue fields. It never creates customers, links, sessions or charges. Repeated real execution reused the existing catalogue; five offline operations tests cover read-only mode, inactive creation/reuse, rejecting test credentials and honest metrics with/without configured links.
+
+`functions/_sales.js` now accepts restricted live keys (`rk_live_`) as well as standard live keys (`sk_live_`). Every other live-sale gate still applies, including SALES_ENABLED=true, private support and merchant settings. Existing download tests exercise a mocked paid request using both key types, and verify missing support/test keys remain blocked. No Stripe key has been stored in source or deployed to Pages.

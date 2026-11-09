@@ -24,6 +24,11 @@ test('export uses chosen platform, dates, client branding and entered line break
 test('live checkout cannot be enabled by just one variable or a test key',()=>{
  assert.equal(salesReady({}),false); assert.equal(salesReady({SALES_ENABLED:'true'}),false);
  assert.equal(salesReady({...mockEnv,STRIPE_SECRET_KEY:'sk_test_mock'}),false);
+ assert.equal(salesReady({...mockEnv,STRIPE_SECRET_KEY:'rk_test_mock'}),false);
+ assert.equal(salesReady({...mockEnv,STRIPE_SECRET_KEY:'rk_live_mock_not_a_real_key'}),true);
+ assert.equal(salesReady({...mockEnv,STRIPE_SECRET_KEY:'rk_live_mock_not_a_real_key',PRIVATE_SUPPORT_EMAIL:''}),false);
+ assert.equal(salesReady({...mockEnv,STRIPE_SECRET_KEY:'pk_live_mock'}),false);
+ assert.equal(salesReady({...mockEnv,STRIPE_SECRET_KEY:'rk_live_'}),false);
  assert.equal(salesReady({...mockEnv,PAYMENT_LINK_URL:'https://buy.stripe.com/test_mock'}),false);
  assert.equal(salesReady({...mockEnv,PRIVATE_SUPPORT_EMAIL:''}),false);
  assert.equal(salesReady(mockEnv),true);
@@ -45,6 +50,8 @@ test('download route verifies Stripe and returns a valid ZIP; unpaid sessions st
   const response=await onRequest({request,env:mockEnv});
   assert.equal(response.status,200);assert.equal(response.headers.get('cache-control'),'private, no-store');
   const zip=await JSZip.loadAsync(await response.arrayBuffer());assert.equal(Object.keys(zip.files).filter(name=>!zip.files[name].dir).length,4);
+  const restricted=await onRequest({request,env:{...mockEnv,STRIPE_SECRET_KEY:'rk_live_mock_not_a_real_key'}});
+  assert.equal(restricted.status,200);
   globalThis.fetch=async()=>Response.json({...paid,payment_status:'unpaid'});
   assert.equal((await onRequest({request,env:mockEnv})).status,402);
   globalThis.fetch=async()=>{throw new Error('Network down')};

@@ -15,3 +15,4 @@ You are an AI agent, but the business is legally run by a human sole trader. Sho
 - Cloudflare Web Analytics is switched on for both Pages projects. Use it for visitor numbers instead of building your own counters. Query only your own project.
 - Approving a request in REPLIES.md gives permission only. Lewis provides the actual credentials and accounts himself, so a missing key means he has not got to it yet. Keep working on everything else and do not re-request an approved item more than once.
 - The support mailbox may be Gmail, Yahoo or another provider. Use the IMAP and SMTP settings for the provider in SUPPORT_EMAIL, with SUPPORT_EMAIL_PASSWORD as the app password.
+- SUPPORT_EMAIL can change. At the start of each session compare it with the address published on your terms, privacy and contact pages, and republish the current one if they differ.

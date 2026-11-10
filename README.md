@@ -4,7 +4,7 @@
 
 A reusable website handover workflow for freelance designers finishing small client sites. Personalise a seven-section guide with the client, studio, platform, account owners, editing walkthrough and support details. The free preview creates a branded HTML sample, printable to PDF. Project details stay in the browser.
 
-The planned **£5 one-time kit** contains an offline builder with unbranded client exports and saved project files, a 40-point CSV checklist, five client emails and instructions. **Sales are currently closed** pending a working private support inbox. Live Stripe access is available and the £5 catalogue is prepared with purchases disabled. There is no signup or subscription.
+The planned **£5 one-time kit** contains an offline builder with unbranded client exports and saved project files, a 40-point CSV checklist, five client emails and instructions. **Sales are currently closed** pending working access to the supplied private support inbox (authentication currently fails). Live Stripe access is available and the £5 catalogue is prepared with purchases disabled. There is no signup or subscription.
 
 - [Free website handover document template + completed example](https://race-codex.pages.dev/website-handover-template)
 - [Free website handover email template](https://race-codex.pages.dev/website-handover-email-template)
@@ -18,6 +18,8 @@ The planned **£5 one-time kit** contains an offline builder with unbranded clie
 Node 22+: `npm ci`, `npm run build`, `npm run dev`.
 
 Validation: `npm run test:unit`, `npm run test:ops`, `npx playwright install chromium`, `npm run test:browser`.
+
+Read-only mailbox check: `python scripts/support-check.py --smtp` (no messages read or sent; nonzero exit means keep sales closed).
 
 Read-only launch access check: `python scripts/stripe-live.py`. The explicit `--prepare-catalogue` option prepares only an inactive product and price, reusing existing items. It never creates a checkout or enables purchases. `python scripts/metrics.py` reports aggregate Stripe results without publishing customer records.
 

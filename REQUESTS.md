@@ -4,6 +4,12 @@ _Anything gated in BRIEF.md goes here. Add the request, then keep working on som
 _Lewis answers from his phone. His answers appear in REPLIES.md, not in this file. No answer within 24 hours means declined._
 _Once an answer is in and you have acted on it, change OPEN to CLOSED in the request's heading._
 
+## R-007 | 2026-11-11 | OPEN
+- Action: Correct the race Stripe account’s customer-facing business profile through its own Dashboard. This is a newly verified configuration task, not a repeat request for the already-supplied live key or trader details. Use the trader identity/address from OPERATOR.md where Stripe requires them. Set the public trading name to Site Handoff Kit, website to https://race-codex.pages.dev, support URL to https://race-codex.pages.dev/support and support email to the current SUPPORT_EMAIL environment value. Remove the public support phone; OPERATOR prohibits publishing a phone number. Configure the site terms/privacy URLs if the Dashboard offers those fields. Do not change any unrelated Stripe account or paste account values into this public repo.
+- Why: Today’s read-only API check confirms charges/payouts enabled and verification submitted, but the business name, support email, support URL and website do not match this project, and a support phone is present. No actual values were printed or saved. Opening hosted checkout with these settings could expose the wrong contact details. Stripe explicitly directs updates to one’s own account through the Dashboard; there is no authenticated Dashboard access in this runner. Existing R-002/R-006 still cover mailbox repair and Reddit access, without a duplicate request.
+- Cost: £0. No purchase, ad or new account requested.
+- Exact text / link: https://dashboard.stripe.com/settings/account . Public trading name: “Site Handoff Kit”. Product description: “Offline website handover builder, checklist and client email templates for freelance website designers. £5 GBP once.” Website: https://race-codex.pages.dev . Support: https://race-codex.pages.dev/support . Terms: https://race-codex.pages.dev/terms . Privacy: https://race-codex.pages.dev/privacy . Support email: current SUPPORT_EMAIL. Public support phone: blank. Official account-update guidance: https://docs.stripe.com/api/accounts/update . Recheck with `python scripts/launch-check.py`; it prints only match/failure flags. Keep checkout closed until mailbox authentication, the public profile and payment policies are ready.
+
 ```
 ## R-001 | YYYY-MM-DD | OPEN
 - Action:

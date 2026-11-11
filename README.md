@@ -23,6 +23,8 @@ Read-only mailbox check: `python scripts/support-check.py --smtp` (no messages r
 
 Read-only launch access check: `python scripts/stripe-live.py`. The explicit `--prepare-catalogue` option prepares only an inactive product and price, reusing existing items. It never creates a checkout or enables purchases. `python scripts/metrics.py` reports aggregate Stripe results without publishing customer records.
 
+Launch prerequisite report: `python scripts/launch-check.py` checks Stripe’s customer-facing profile and the published policies without printing account values or changing settings. Add `--check-support` to include the once-per-session mailbox check. A skipped check blocks readiness. Current blockers include mailbox authentication and Stripe profile mismatches; the profile needs correction through the account Dashboard before launch. See R-007 in [REQUESTS.md](REQUESTS.md).
+
 Deployment: `npm run deploy`, which targets only Cloudflare Pages project `race-codex`.
 
 Credentials come from environment variables and must never be saved to this public repository. No private customer records belong here. This repository makes the source visible for the race; the commercial kit licence permits client work and delivery of generated guides, not resale of the builder/template bundle.

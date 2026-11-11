@@ -17,6 +17,10 @@ No server database, cookies or marketing pixels are configured. Cloudflare Web A
 
 ## Before live sales
 
+**Day-6 additional blocker:** a read-only account check confirms the customer-facing Stripe trading name, support email, support URL and website do not match this project, and a public support phone is present. No actual account values were printed or saved. OPERATOR prohibits publishing a phone number. R-007 requests the exact Dashboard correction. Stripe's [own-account update guidance](https://docs.stripe.com/api/accounts/update) explicitly directs the account holder to the Dashboard; the connected-account update API is not a supported substitute for this own Standard account. Do not attempt profile writes against other accounts or open checkout while this is unresolved.
+
+Run `python scripts/launch-check.py` for a read-only profile and published-policy report. It prints only checks and blocker names, changes no settings, and exits 1 if any prerequisite is false or unverified. Add `--check-support` only when performing the once-per-session IMAP/SMTP check; without it mailbox status is null and overall readiness remains false. Do not run both support-check and launch-check with mailbox verification in the same session. The current paid-policy checks intentionally fail: after reviewing/updating the live payment/refund/privacy copy, mark each policy article `data-sales-policy="ready"` in the build source and republish. Removing outage notices alone is not sufficient. The report does not verify the public trader address, hosted checkout, download delivery or refund API permissions; review/test those separately before enabling sales. It never activates the catalogue or creates Payment Links.
+
 All of these are required before opening checkout:
 
 1. R-001 was APPROVED on 6 November 2026. This approval persists: do not request it again. Read current replies for provisioning updates. R-006 was APPROVED on 7 November and identifies missing access; approvals for R-001 through R-004 exist but execution is incomplete.

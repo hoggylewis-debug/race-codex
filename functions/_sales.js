@@ -3,7 +3,9 @@ export function salesReady(env) {
     && /^(?:sk|rk)_live_[A-Za-z0-9_]+$/.test(env.STRIPE_SECRET_KEY || '')
     && /^plink_[A-Za-z0-9]+$/.test(env.PAYMENT_LINK_ID || '')
     && /^https:\/\/buy\.stripe\.com\/(?!test_)[A-Za-z0-9]+$/.test(env.PAYMENT_LINK_URL || '')
-    && Boolean(env.PRIVATE_SUPPORT_EMAIL && env.MERCHANT_NAME);
+    && env.SUPPORT_EMAIL === 'sitehandoff.support@gmx.co.uk'
+    && env.PRIVATE_SUPPORT_EMAIL === 'sitehandoff.support@gmx.co.uk'
+    && env.MERCHANT_NAME === 'Site Handoff Kit';
 }
 export function json(data, status=200) {
   return new Response(JSON.stringify(data), {status,headers:{'Content-Type':'application/json;charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'}});

@@ -1,20 +1,19 @@
 #!/usr/bin/env python3
 """Read-only launch checks; exit 1 when prerequisites are incomplete.
 
-By default checks Stripe and the published policies, without another mailbox
-login. Use --check-support once per session to also prove IMAP/SMTP access.
-No raw account fields, customer records, addresses or credentials are output.
-This report does not enable sales or prove real payment/refund permissions.
+Checks Stripe and published policies. Support readiness is the exact alias
+match required by OPERATOR.md; the human trader handles support and refunds.
+No mailbox login, customer records or raw account values are used or output.
+This report does not enable sales or prove real payment/delivery permissions.
 """
 import argparse
 import json
 import os
-from pathlib import Path
-import runpy
 import urllib.error
 import urllib.request
 
 ROOT = 'https://race-codex.pages.dev'
+SUPPORT_ALIAS = 'sitehandoff.support@gmx.co.uk'
 
 
 def stripe_account(key):
@@ -48,9 +47,9 @@ def profile_checks(account, support):
 
 def check(check_support=False):
     checks = {}
-    support = os.environ.get('SUPPORT_EMAIL', '').strip()
+    support = SUPPORT_ALIAS
     key = os.environ.get('STRIPE_SECRET_KEY', '')
-    checks['support_address_configured'] = bool(support)
+    checks['support_alias_matches'] = os.environ.get('SUPPORT_EMAIL') == SUPPORT_ALIAS
     checks['live_stripe_key_configured'] = key.startswith(('sk_live_', 'rk_live_'))
     if checks['live_stripe_key_configured']:
         try:
@@ -69,22 +68,17 @@ def check(check_support=False):
             checks[name + '_no_mailbox_outage_notice'] = 'Mailbox access is temporarily unavailable' not in html
         except (urllib.error.URLError, OSError, ValueError):
             checks[name + '_reachable'] = False
-    if check_support:
-        support_check = runpy.run_path(str(Path(__file__).with_name('support-check.py')))['check']
-        checks['support_imap_and_smtp_verified'] = support_check(smtp=True)['sales_support_ready']
-    else:
-        checks['support_imap_and_smtp_verified'] = None
     return {
         'checks': checks,
         'prerequisites_ready': all(value is True for value in checks.values()),
         'blockers': [name for name, ready in checks.items() if ready is not True],
-        'note': 'Read-only preflight, not proof of checkout, delivery or refunds. A skipped mailbox check is not a pass. No sales settings changed.',
+        'note': 'Read-only preflight, not proof of checkout or delivery. Support/refunds are handled by the human trader; no mailbox login attempted. No sales settings changed.',
     }
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--check-support', action='store_true')
+    parser.add_argument('--check-support', action='store_true', help='Deprecated; alias is always checked without a mailbox login.')
     result = check(parser.parse_args().check_support)
     print(json.dumps(result, indent=2))
     raise SystemExit(0 if result['prerequisites_ready'] else 1)

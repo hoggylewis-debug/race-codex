@@ -5,7 +5,7 @@ import {salesReady,verifySession} from '../functions/_sales.js';
 import {onRequest} from '../functions/api/download.js';
 import JSZip from 'jszip';
 import fs from 'node:fs/promises';
-const mockEnv={SALES_ENABLED:'true',STRIPE_SECRET_KEY:'sk_live_mock_not_a_real_key',PAYMENT_LINK_ID:'plink_mock',PAYMENT_LINK_URL:'https://buy.stripe.com/mock',PRIVATE_SUPPORT_EMAIL:'support@example.invalid',MERCHANT_NAME:'Test operator'};
+const mockEnv={SALES_ENABLED:'true',STRIPE_SECRET_KEY:'sk_live_mock_not_a_real_key',PAYMENT_LINK_ID:'plink_mock',PAYMENT_LINK_URL:'https://buy.stripe.com/mock',SUPPORT_EMAIL:'sitehandoff.support@gmx.co.uk',PRIVATE_SUPPORT_EMAIL:'sitehandoff.support@gmx.co.uk',MERCHANT_NAME:'Site Handoff Kit'};
 const paid={livemode:true,status:'complete',payment_status:'paid',payment_link:'plink_mock',currency:'gbp',amount_subtotal:500,amount_total:500};
 test('client input is escaped in the document and CSS colours are constrained',()=>{
  const html=handoverHTML({client:'<img src=x onerror=alert(1)>',accent:'red;}body{display:none'});
@@ -31,6 +31,9 @@ test('live checkout cannot be enabled by just one variable or a test key',()=>{
  assert.equal(salesReady({...mockEnv,STRIPE_SECRET_KEY:'rk_live_'}),false);
  assert.equal(salesReady({...mockEnv,PAYMENT_LINK_URL:'https://buy.stripe.com/test_mock'}),false);
  assert.equal(salesReady({...mockEnv,PRIVATE_SUPPORT_EMAIL:''}),false);
+ for (const SUPPORT_EMAIL of ['', 'support@example.invalid', 'sitehandoff.support@gmx.co.uk ']) assert.equal(salesReady({...mockEnv,SUPPORT_EMAIL}),false);
+ assert.equal(salesReady({...mockEnv,PRIVATE_SUPPORT_EMAIL:'support@example.invalid'}),false);
+ assert.equal(salesReady({...mockEnv,MERCHANT_NAME:'Another business'}),false);
  assert.equal(salesReady(mockEnv),true);
 });
 test('only paid, complete, live sessions for this £5 kit unlock the product',()=>{
